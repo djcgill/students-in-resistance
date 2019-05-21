@@ -1,10 +1,27 @@
-{% if latest_posts %}
-    <ul>
-    {% for post in latest_posts %}
-        <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a>
-    </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No blog posts are available.</p>
-{% endif %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Oswald:600|Spectral:500" rel="stylesheet" type="text/css">
+        <title>Students In Resistance</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1><a href="{% url 'blog:index' %}"></a>Students In Resistance</h1>
+        </div>
+        {% if latest_posts %}
+        <div id="content" class="single"></div>
+            <div class="post">
+            {% for post in latest_posts %}
+                <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+                <p>{{ post.published_date }}</p>
+                <p>{{ post.text|truncatewords:50 }}</p>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p>No blog posts are available.</p>
+        {% endif %}
+    </body>
+</html>
