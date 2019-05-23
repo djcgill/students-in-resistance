@@ -12,12 +12,11 @@
             <h1><a href="{% url 'blog:index' %}"></a><img src="{% static 'images/header-image.jpg' %}"/></h1>
         </div>
         {% if latest_posts %}
-        <div id="content" class="single"></div>
             <div class="post">
             {% for post in latest_posts %}
                 <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
-                <p>{{ post.published_date }}</p>
-                <p>{{ post.text|truncatewords:50 }}</p>
+                <div class="post-meta"><p>Published: {{ post.published_date }}</p></div>
+                <div class="text"><p>{{ post.text|truncatewords:50 }}</p></div>
             {% endfor %}
             </div>
         {% else %}

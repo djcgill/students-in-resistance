@@ -1,2 +1,24 @@
-<h1>{{ post.title }}</h1>
-<p>{{ post.text }}</p>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Oswald:600|Spectral:500" rel="stylesheet" type="text/css">
+        <title>{{ post.title }}</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1><a href="{% url 'blog:index' %}"></a><img src="{% static 'images/header-image.jpg' %}"/></h1>
+        </div>
+        <div id="content" class="single">
+            <div class="post">
+                <h2>{{ post.title }}</h2>
+                <div class="text">
+                    <p><i>By {{ post.author }}</i></p>
+                    <p<>{{ post.text }}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
