@@ -1,26 +1,16 @@
-{% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Oswald:600|Spectral:500" rel="stylesheet" type="text/css">
-        <title>Students In Resistance</title>
-    </head>
-    <body>
-        <div id="header">
-            <h1><a href="{% url 'blog:index' %}"></a><img src="{% static 'images/header-image.jpg' %}"/></h1>
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% if latest_posts %}
+    <div id="content">
+        <div class="post">
+        {% for post in latest_posts %}
+            <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+            <div class="post-meta"><p>Published: {{ post.published_date }}</p></div>
+            <div class="text"><p>{{ post.text|truncatewords:50 }}</p></div>
+        {% endfor %}
         </div>
-        {% if latest_posts %}
-            <div class="post">
-            {% for post in latest_posts %}
-                <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
-                <div class="post-meta"><p>Published: {{ post.published_date }}</p></div>
-                <div class="text"><p>{{ post.text|truncatewords:50 }}</p></div>
-            {% endfor %}
-            </div>
-        {% else %}
-            <p>No blog posts are available.</p>
-        {% endif %}
-    </body>
-</html>
+    </div>
+    {% else %}
+        <p>No blog posts are available.</p>
+    {% endif %}
+{% endblock %}

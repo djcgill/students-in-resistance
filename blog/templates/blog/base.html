@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Oswald:600|Spectral:500" rel="stylesheet" type="text/css">
+        <title>Students In Resistance</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1><a href="{% url 'blog:index' %}"></a><img src="{% static 'images/header-image.jpg' %}"/></h1>
+            </div>
+            {% block content %}
+            {% endblock %}
+            <div id="footer">
+                <div class="footer-center"><a href="/blog">Subscribe via RSS</a>. Designed by <a href="http://www.sleepoversf.com/">Sleepover</a>.</div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -14,3 +14,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
 	model = Post
 	template_name = 'blog/detail.html'
+
+class AboutView(generic.TemplateView):
+	template_name = 'blog/about.html'
+
