@@ -4,7 +4,7 @@
     <div id="content">
         <div class="post">
         {% for post in latest_posts %}
-            <h2><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h2>
+            <h3><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h3>
             <div class="post-meta"><p>Published: {{ post.published_date }}</p></div>
             <div class="text"><p>{{ post.text|truncatewords:50 }}</p></div>
         {% endfor %}

@@ -98,7 +98,7 @@ body {
         width: 500px;
       }
     
-      .post h2 {
+      .post h3 {
         font-family: 'Oswald', sans-serif;
         font-weight: bold;
         font-size: 2em;
@@ -110,7 +110,7 @@ body {
         color: #1d1d1d;
         overflow: visible;
       }
-        .post h2 a {
+        .post h3 a {
           color: #1d1d1d;
           text-decoration: none;
         }

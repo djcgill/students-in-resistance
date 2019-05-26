@@ -18,3 +18,11 @@ class DetailView(generic.DetailView):
 class AboutView(generic.TemplateView):
 	template_name = 'blog/about.html'
 
+class TeamView(generic.TemplateView):
+	template_name = 'blog/team.html'
+
+class ContactView(generic.TemplateView):
+	template_name = 'blog/contact.html'
+
+class ContribView(generic.TemplateView):
+	template_name = 'blog/contributors.html'
