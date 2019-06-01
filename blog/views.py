@@ -21,6 +21,9 @@ class AboutView(generic.TemplateView):
 class TeamView(generic.TemplateView):
 	template_name = 'blog/team.html'
 
+class DownloadsView(generic.TemplateView):
+	template_name = 'blog/downloads.html'
+
 class ContactView(generic.TemplateView):
 	template_name = 'blog/contact.html'
 

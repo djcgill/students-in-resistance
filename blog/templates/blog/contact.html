@@ -1,10 +1,11 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block content %}
     <div id="content" class="single">
         <div class="post">
             <h3>Do you have something to say?</h3>
             <div class="text">
-                <p><img src="/static/images/pen-your-thought.jpg"/></p>
+                <p><img src="{% static 'images/pen-your-thought.jpg' %}"/></p>
                 <p>Interested to contribute? This platform accepts a wide variety of texts, from creative to academic writings, from experimental non-fictions to word plays.&nbsp;Usually, the editorial team will propose a theme. For this reason, it is advisable to contact us so that we can keep you in the loop prior to submission: <strong>studentsinresistance@gmail.com</strong></p>
             </div>
         </div>
