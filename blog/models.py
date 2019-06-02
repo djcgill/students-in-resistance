@@ -4,11 +4,16 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 
 
+def get_image_filename(instance, filename):
+    title = instance.Post.title
+    slug = slugify(title)
+    return "images/%s-%s" % (slug, filename)
+
 class Post(models.Model):
     """Blog post model"""
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # TODO: Change to user model when user app implemented
-    issue = models.ForeignKey('Issue', on_delete=models.CASCADE, default=-1)
-    category = models.MantToManyField('Category', related_name='posts')
+    issue = models.OneToOneField('Issue', related_name='post_issue', on_delete=models.CASCADE)
+    category = models.ManyToManyField('Category', related_name='posts')
     title = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
@@ -23,7 +28,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     """Blog post images"""
-    post = models.ForeignKey(Post, default=None)
+    post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=get_image_filename, verbose_name="Image")
 
 class Category(models.Model):
@@ -32,10 +37,11 @@ class Category(models.Model):
 
 class Issue(models.Model):
     """Table for zine issue"""
-    isuue_number = models.IntegerField(primary_key=True)
+    issue_number = models.IntegerField(default=-1)
     title = models.CharField(max_length=200)
     description = models.TextField()
     published_date = models.DateTimeField(blank=True, null=True)
+    link = models.URLField()
 
     def publish(self):
         self.published_date = timezone.now()
@@ -43,8 +49,3 @@ class Issue(models.Model):
 
     def __str__(self):
         return str(self.issue_number)
-
-def get_image_filename(instance, filename):
-    title = instance.post.title
-    slug = slugify(title)
-    return "images/%s-%s" % (slug, filename) 
