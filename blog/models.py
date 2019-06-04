@@ -15,7 +15,7 @@ class Post(models.Model):
     issue = models.OneToOneField('Issue', related_name='post_issue', on_delete=models.CASCADE)
     category = models.ManyToManyField('Category', related_name='posts')
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    body = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
