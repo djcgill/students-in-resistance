@@ -1,6 +1,6 @@
 from django import forms
 
-from blog.models import Post, PostImage, Issue
+from blog.models import Post, PostImage, Issue, Category
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=200, label = 'Title')
