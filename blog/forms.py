@@ -5,6 +5,8 @@ from blog.models import Post, PostImage, Issue, Category
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=200, label = 'Title')
     body = forms.Textarea()
+    issue = forms.ModelChoiceField(queryset=Issue.objects.all(), to_field_name='issue_number')
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), to_field_name='name')
 
     class Meta:
         model = Post
@@ -12,8 +14,6 @@ class PostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['issue'] = forms.ModelChoiceField(queryset=Issue.objects.order_by('issue_number').values_list('issue_number'))
-        self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.order_by('name').values_list('name'))
 
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(label='Image')

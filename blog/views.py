@@ -8,6 +8,7 @@ from django.views import generic
 from blog.models import Post, PostImage
 from blog.forms import PostForm, ImageForm
 
+
 class IndexView(generic.ListView):
     template_name = 'blog/index.html'
     context_object_name = 'latest_posts'
@@ -37,14 +38,14 @@ class ContribView(generic.TemplateView):
 
 def post(request):
 	"""Handles new blog posts"""
-	ImageFormSet = modelformset_factory(PostImage, form=ImageForm)
+	ImageFormSet = modelformset_factory(PostImage, form=ImageForm, extra=1)
 
 	if request.method == 'POST':
-		postForm = PostForm(request.Post)
-		formset = ImageFormSet(request.POST, request.Files,
+		postForm = PostForm(request.POST)
+		formset = ImageFormSet(request.POST, request.FILES,
 							   queryset=PostImage.objects.none())
 		
-		if PostForm.is_valid() and formset.is_valid():
+		if postForm.is_valid() and formset.is_valid():
 			post_form = postForm.save(commit=False)
 			#TODO: Change when users are implemented
 			post_form.user = 'Admin'
@@ -59,7 +60,6 @@ def post(request):
 	else:
 		postForm = PostForm()
 		formset = ImageFormSet(queryset=PostImage.objects.none())
-		
 	return render(request, 
 					'blog/post.html', 
 					{'postForm': postForm, 'formset': formset})

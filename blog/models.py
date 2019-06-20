@@ -12,8 +12,8 @@ def get_image_filename(instance, filename):
 class Post(models.Model):
     """Blog post model"""
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # TODO: Change to user model when user app implemented
-    issue = models.OneToOneField('Issue', related_name='post_issue', on_delete=models.CASCADE)
-    category = models.ManyToManyField('Category', related_name='posts')
+    issue = models.ManyToManyField('Issue', related_name='post_issue')
+    category = models.ManyToManyField('Category', related_name='post_category')
     title = models.CharField(max_length=200)
     body = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
