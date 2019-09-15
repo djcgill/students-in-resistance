@@ -1,0 +1,24 @@
+- model: blog.Issue
+  pk: "1"
+  fields:
+    issue_number: "1"
+    title: "Some notes for 2012"
+    description: "Concerning education"
+    published_date: "2011-09-01T13:20:30+03:00"
+    link: "http://nowhere.com"
+  
+- model: blog.Category
+  pk: "1"
+  fields:
+    name: "Malaysia"
+
+- model: blog.Post
+  pk: "1"
+  fields:
+    author: "1"
+    issue: "1"
+    category: "1"
+    title: "Test Post"
+    body: "This is a test post please ignore. This post spans several lines to check formatting hopefully"
+    created_date: "2018-09-01T04:00:00"
+    published_date: "2018-09-01T04:00:00"

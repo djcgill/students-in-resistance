@@ -7,6 +7,15 @@
     </head>
     <body>
         <div id="container">
+            <div id="login">
+                <h2>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">logout</a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}">login</a>
+                {% endif %}
+                </h2>
+            </div>
             <div id="header">
                 <h1><a href="{% url 'blog:index' %}"><img src="{% static 'images/header-image.jpg' %}"/></a></h1>
 				<h2 style="margin-top:15px; font-size:1.4em">

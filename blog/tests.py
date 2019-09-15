@@ -25,3 +25,7 @@ class ModelTests(TestCase):
         #Assert
         self.assertEqual(expected, image_file_name)
 
+    def test_upload_image()
+        #TODO: Add tests for image uploads
+        pass
+
