@@ -1,20 +1,19 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-{% if form.erros %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. Contact your administator to gain access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
 <div id="content" class="single">
     <div class="post">
+        {% if form.errors %}
+        <p style="color:red;">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+    
+        {% if next %}
+            {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. Contact your administator to gain access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
         <h3>Login</h3>
             <form id="login_form" method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
