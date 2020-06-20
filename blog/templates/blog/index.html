@@ -2,12 +2,14 @@
 {% block content %}
     {% if latest_posts %}
     <div id="content">
+        <div class="masonary">
         <div class="post">
         {% for post in latest_posts %}
             <h3><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h3>
             <div class="post-meta"><p>Published: {{ post.published_date }}</p></div>
             <div class="text"><p>{{ post.text|truncatewords:50 }}</p></div>
         {% endfor %}
+        </div>
         </div>
     </div>
     {% else %}
